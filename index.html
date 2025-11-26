@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>For Palku 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+/* ---------------- GLOBAL ---------------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #cc2b5e, #753a88);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------------- NAME + CROWN ---------------- */
+.palku-box {
+    position: absolute;
+    top: 20px;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    font-size: 35px;
+    font-weight: 700;
+
+    /* PINK NEON GLOW */
+    text-shadow: 0 0 10px #ff4da6, 0 0 25px #ff4da6, 0 0 40px #ff4da6;
+
+    animation: fadeIn 2s ease-out forwards;
+}
+
+.crown {
+    font-size: 38px;
+    position: relative;
+    top: -10px;
+    animation: floatCrown 2.2s ease-in-out infinite;
+}
+
+@keyframes floatCrown {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ---------------- GLASS CARD ---------------- */
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+}
+
+.lyrics-box {
+    background: rgba(0, 0, 0, 0.35);
+    padding: 28px;
+    min-height: 160px;
+    border-radius: 20px;
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* TYPEWRITER */
+.typewriter {
+    display: inline-block;
+    border-right: 3px solid #fff;
+    padding-right: 5px;
+    animation: cursorBlink 0.8s steps(1) infinite;
+}
+@keyframes cursorBlink {
+    50% { border-color: transparent; }
+}
+
+/* ---------------- BUTTON ---------------- */
+.heart-btn {
+    margin-top: 25px;
+    background: white;
+    color: #d63384;
+    border: 2px solid #0062ff;
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+.heart-btn:hover {
+    transform: scale(1.06);
+}
+
+/* ---------------- DARK GLASS I LOVE YOU BOX ---------------- */
+.love-box {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(20, 0, 20, 0.60);
+    padding: 25px 35px;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ff99d9;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1.5s ease, transform 1s ease;
+    text-shadow: 0 0 12px #ff4da6, 0 0 25px #ff4da6;
+    /* --- ADD THIS LINE --- */
+    z-index: 1000; 
+}
+
+/* ---------------- VIDEO BOX ---------------- */
+.video-container {
+    margin-top: 20px;
+    display: none;
+}
+iframe {
+    width: 100%;
+    height: 220px;
+    border-radius: 14px;
+}
+
+/* ---------------- ROSE PETAL RAIN ---------------- */
+.petal {
+    position: absolute;
+    top: -10px;
+    font-size: 25px;
+    animation: fall 6s linear infinite;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* ---------------- SIGNATURE ---------------- */
+.signature {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-family: "Brush Script MT", cursive;
+    font-size: 40px;
+    color: #ffe6f7;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    text-shadow: 0 0 10px #ff4da6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HER NAME + CROWN -->
+<div class="palku-box">
+    <div class="crown">👑</div>
+    Palku 💖
+</div>
+
+<!-- FINAL SIGNATURE -->
+<div id="signature" class="signature">For My Palku ✍️💖</div>
+
+<!-- I LOVE YOU BOX -->
+<div id="loveBox" class="love-box">I LOVE YOU PALKU ❤️</div>
+
+<div class="container">
+
+    <div class="lyrics-box">
+        <span id="lyricText" class="typewriter"></span>
+    </div>
+
+    <button class="heart-btn" id="nextBtn">💖 Next 💖</button>
+
+    <div class="video-container" id="videoBox">
+        <iframe 
+            src="https://www.youtube.com/embed/sh7RjtZI1C0?si=yiu0cFRB5Yh-GGck"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+</div>
+
+<script>
+// ---------------- LYRICS ----------------
+const lyrics = [
+    "Jattiye Blonde Tere Rang Te",
+    "Dulleya Brown Jeha Jatt Ni",
+    "Weapona Ton Tezz Teri Akh Ne",
+    "Sikhar Duppehre Leya Patt Ni",
+    "Main Raja Taan Nahi Aan Marjaniye",
+    "Tainu Rani Rakhunga Bna Ke 🌸❤️"
+];
+
+let i = 0;
+let index = 0;
+let speed = 55;
+
+function typeWriterEffect(text) {
+    index = 0;
+    document.getElementById("lyricText").innerHTML = "";
+    function typer() {
+        if (index < text.length) {
+            document.getElementById("lyricText").innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typer, speed);
+        }
+    }
+    typer();
+}
+
+typeWriterEffect(lyrics[i]);
+
+// ---------------- NEXT BUTTON ----------------
+document.getElementById("nextBtn").addEventListener("click", () => {
+
+    i++;
+
+    if (i < lyrics.length) {
+        typeWriterEffect(lyrics[i]);
+    } else {
+        // show video
+        document.getElementById("videoBox").style.display = "block";
+        document.getElementById("nextBtn").style.display = "none";
+
+        // SHOW MAIN SCREEN I LOVE YOU
+        const love = document.getElementById("loveBox");
+        love.style.opacity = 1;
+        love.style.transform = "translate(-50%, -50%) scale(1.1)";
+
+        // show signature
+        setTimeout(() => {
+            document.getElementById("signature").style.opacity = 1;
+        }, 1200);
+
+        // heart explosion
+        heartExplosion();
+    }
+});
+
+// ---------------- HEART EXPLOSION ----------------
+function heartExplosion() {
+    for (let i = 0; i < 45; i++) {
+        let h = document.createElement("div");
+        h.innerHTML = "💖";
+        h.style.position = "absolute";
+        h.style.left = "50%";
+        h.style.top = "50%";
+        h.style.fontSize = (20 + Math.random() * 25) + "px";
+        document.body.appendChild(h);
+
+        let x = (Math.random() - 0.5) * 350;
+        let y = (Math.random() - 0.5) * 350;
+
+        h.animate([
+            { transform: "translate(-50%, -50%) scale(1)", opacity: 1 },
+            { transform: `translate(${x}px, ${y}px) scale(0)`, opacity: 0 }
+        ], {
+            duration: 1200,
+            easing: "ease-out",
+            fill: "forwards"
+        });
+
+        setTimeout(() => h.remove(), 1500);
+    }
+}
+
+// ---------------- ROSE PETAL RAIN ----------------
+setInterval(() => {
+    let petal = document.createElement("div");
+    petal.classList.add("petal");
+    petal.innerHTML = "🌹";
+
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.fontSize = 22 + Math.random() * 15 + "px";
+    petal.style.animationDuration = 4 + Math.random() * 4 + "s";
+
+    document.body.appendChild(petal);
+
+    setTimeout(() => petal.remove(), 9000);
+}, 400);
+</script>
+
+</body>
+</html>
